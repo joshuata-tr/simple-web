@@ -6,8 +6,6 @@ pipeline {
     stages {
         stage('Authenticate') {
             steps {
-                sh 'az login'
-                sh 'az aks get-credentials -n devops-interview-aks -g devops-interview-rg'
                 sh 'export KUBECONFIG=~/.kube/config'
                 sh 'kubelogin convert-kubeconfig -l msi'
             }
