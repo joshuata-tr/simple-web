@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir('/home/azureuser/simple-web-chart') {
+                dir('/home/azureuser/simple-web-chart/') {
                     sh 'helm package simple-web/simple-web'
                     sh 'helm repo index . --url https://joshuata-tr.github.io/simple-web'
                 }
