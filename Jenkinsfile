@@ -11,6 +11,7 @@ pipeline {
         }
         stage('Build') {
             steps {
+                sh 'helm lint simple-web'
                 sh 'helm package simple-web'
                 sh 'helm repo index . --url https://joshuata-tr.github.io/simple-web'
             }
@@ -20,7 +21,7 @@ pipeline {
                 script {
                     if (params.ACTION == 'Deploy') {
                         sh 'helm repo add simple-web https://joshuata-tr.github.io/simple-web'
-                        sh 'helm upgrade --install simple-web simple-web/simple-web'
+                        sh 'helm upgrade --install simple-web simple-web'
                     } else if (params.ACTION == 'Destroy') {
                         sh 'helm delete simple-web'
                     }
