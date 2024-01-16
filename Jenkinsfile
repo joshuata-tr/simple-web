@@ -6,7 +6,10 @@ pipeline {
     stages {
         stage('Authenticate') {
             steps {
+                // Set the KUBECONFIG environment variable to the path of the ~/.kube/config file
                 sh 'export KUBECONFIG=~/.kube/config'
+                
+                // Convert the kubeconfig file to use Azure Managed Service Identity (MSI)
                 sh 'kubelogin convert-kubeconfig -l msi'
             }
         }
