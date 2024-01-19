@@ -60,7 +60,7 @@ spec:
       - path: /josh
         backend:
           serviceName: my-service
-          servicePort: 80
+          servicePort: 8000
 
 keda:
   enabled: true
