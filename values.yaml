@@ -50,14 +50,14 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   name: my-ingress
-  namespace: josh
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - http:
+  - host: {{ status.loadBalancer.ingress[0].ip }}
+    http:
       paths:
-      - path: /josh
+      - path: /
         backend:
           serviceName: my-service
           servicePort: 8000
