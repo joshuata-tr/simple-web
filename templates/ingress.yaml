@@ -1,15 +1,15 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: {{ include "simple-web.fullname" . }}
+  name: {{ .Values.ingress.name }}
+  namespace: {{ .Values.ingress.namespace }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-  spec:
+spec:
   rules:
-    - host: {{ .Values.ingress.host }}
-      http:
-        paths:
-          - path: {{ .Values.ingress.path }}
-            backend:
-              serviceName: {{ include "simple-web.fullname" . }}
-              servicePort: {{ .Values.service.port }}
+  - http:
+      paths:
+      - path: {{ .Values.ingress.path }}
+        backend:
+          serviceName: {{ .Values.ingress.serviceName }}
+          servicePort: {{ .Values.ingress.servicePort }}
