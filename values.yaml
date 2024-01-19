@@ -39,29 +39,38 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
-  port: 80
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    app: simple-web
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
   type: LoadBalancer
 
 ingress:
   enabled: true
 
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: my-ingress
+  name: josh-ingress
   namespace: josh
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: {{ status.loadBalancer.ingress[0].ip }}
-    http:
+  - http:
       paths:
-      - path: /
+      - path: /josh
+        pathType: Prefix
         backend:
           serviceName: my-service
-          servicePort: 8000
+          servicePort: 80
 
 keda:
   enabled: true
