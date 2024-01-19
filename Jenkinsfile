@@ -24,7 +24,7 @@ pipeline {
                     if (params.ACTION == 'Deploy') {
                         sh 'helm upgrade --install simple-web simple-web --namespace josh --kubeconfig /home/azureuser/.kube/config'
                     } else if (params.ACTION == 'Destroy') {
-                        sh 'helm delete simple-web --namespace josh'
+                        sh 'helm delete simple-web --namespace josh --kubeconfig /home/azureuser/.kube/config'
                     }
                 }
             }
