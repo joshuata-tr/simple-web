@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     if (params.ACTION == 'Deploy') {
-                        sh 'helm upgrade --install simple-web simple-web'
+                        sh 'helm upgrade --install simple-web simple-web' --kubeconfig $HOME/.kube/config
                     } else if (params.ACTION == 'Destroy') {
                         sh 'helm delete simple-web'
                     }
