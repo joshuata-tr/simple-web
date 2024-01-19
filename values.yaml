@@ -42,7 +42,7 @@ securityContext: {}
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-service
+  name: LoadBalancer
   namespace: josh
 spec:
   selector:
