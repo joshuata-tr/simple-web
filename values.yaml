@@ -43,6 +43,9 @@ service:
   port: 80
   type: LoadBalancer
 
+ingress:
+  enabled: true
+
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
