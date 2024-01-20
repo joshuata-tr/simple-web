@@ -32,7 +32,7 @@ ingress:
       paths:
       - path: /josh
         backend:
-          serviceName: LoadBalancer
+          serviceName: simple-web
           servicePort: 80
 
 keda:
