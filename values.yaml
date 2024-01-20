@@ -22,13 +22,14 @@ spec:
     port: 80
     targetPort: 80
   type: LoadBalancer
+  loadBalancerIP: 172.201.13.84
 
 ingress:
   enabled: true
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
   hosts:
-    - host: example.com
+    - host: 172.201.13.84
       paths:
       - path: /josh
         backend:
