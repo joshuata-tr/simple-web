@@ -15,7 +15,7 @@ serviceAccount:
 apiVersion: v1
 kind: Service
 metadata:
-  name: LoadBalancer
+  name: simple-web
   namespace: josh
 spec:
   selector:
