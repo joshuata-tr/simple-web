@@ -9,32 +9,17 @@ image:
   pullPolicy: IfNotPresent
   tag: latest
 
-apiVersion: v1
-kind: Service
-metadata:
+service:
   name: simple-web
   namespace: josh
-spec:
-  selector:
-    app: simple-web
-  ports:
-  - name: http
-    port: 80
-    targetPort: 80
+  port: 80
   type: LoadBalancer
   loadBalancerIP: 172.201.13.84
 
 ingress:
   enabled: true
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-  hosts:
-    - host: 172.201.13.84
-      paths:
-      - path: /josh
-        backend:
-          serviceName: simple-web
-          servicePort: 80
+  host: 172.201.13.84
+  path: /josh
 
 keda:
   enabled: true
