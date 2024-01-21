@@ -13,12 +13,9 @@ service:
   name: simple-web
   namespace: josh
   port: 80
-  type: LoadBalancer
-  loadBalancerIP: 0.0.0.0
 
 ingress:
   enabled: true
-  host: 0.0.0.0
   path: /josh
 
 keda:
