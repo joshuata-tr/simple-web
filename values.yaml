@@ -13,6 +13,7 @@ service:
   name: simple-web
   namespace: josh
   port: 80
+  type: ClusterIP
 
 ingress:
   enabled: true
