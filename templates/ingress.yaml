@@ -8,11 +8,13 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: {{ .Values.ingress.host }}
-      http:
+    - http:
         paths:
           - path: {{ .Values.ingress.path }}
+            pathType: Prefix
             backend:
-              serviceName: {{ .Values.service.name }}
-              servicePort: {{ .Values.service.port }}
+              service:
+                name: {{ .Values.service.name }}
+                port:
+                  number: {{ .Values.service.port }}
 {{- end }}
