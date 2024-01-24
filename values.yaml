@@ -24,6 +24,8 @@ ingress:
   host: external.simple-web.com
   path: /josh
   pathType: Prefix
+  annotations:
+    kubernetes.io/ingress.class: nginx
 
 nodeSelector: {}
 
