@@ -22,7 +22,7 @@ pipeline {
         
         stage('Checkout') {
             steps {
-                git 'https://github.com/joshuata-tr/simple-web.git'
+                git branch: 'main', url: 'https://github.com/joshuata-tr/simple-web.git'
             }
         }
         
