@@ -31,14 +31,14 @@ autoscaling:
   enabled: true
   type: keda
   minReplicas: 3
-  maxReplicas: 32
+  maxReplicas: 6
   targetCPUUtilizationPercentage: 80
   targetMemoryUtilizationPercentage: 80
   schedule:
     enabled: true
     desiredReplicas: 4
-    start: "0 13 * * *"
-    end: "30 15 * * *"
+    start: "0 8-23 * * *"
+    end: "0 0 * * *"
 
 nodeSelector: {}
 
