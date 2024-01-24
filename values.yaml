@@ -17,7 +17,10 @@ service:
 
 ingress:
   enabled: true
+  name: simple-web-ingress
+  host: example.com
   path: /josh
+  pathType: Prefix
 
 keda:
   enabled: true
