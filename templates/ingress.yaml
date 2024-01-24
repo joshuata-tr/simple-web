@@ -6,7 +6,7 @@ metadata:
   namespace: {{ .Values.service.namespace }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    kubernetes.io/ingress.class: '{{ .Values.ingress.annotations."kubernetes\.io/ingress\.class" | quote }}'
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
     - http:
