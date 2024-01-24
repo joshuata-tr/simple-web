@@ -22,42 +22,6 @@ ingress:
   path: /josh
   pathType: Prefix
 
-keda:
-  enabled: true
-  scalers:
-    - type: pods
-      metadata:
-        name: simple-web
-      pollingInterval: 5
-      cooldownPeriod: 5
-      triggers:
-        - type: cpu
-          metadata:
-            query: "sum(container_cpu_usage_seconds_total) / sum(machine_cpu_cores) * 100"
-            threshold: "80"
-        - type: memory
-          metadata:
-            query: "sum(container_memory_working_set_bytes) / sum(machine_memory_bytes) * 100"
-            threshold: "80"
-  scaledObject:
-    metadata:
-      name: simple-web
-    spec:
-      scaleTargetRef:
-        name: simple-web
-        kind: Deployment
-      minReplicaCount: 1
-      maxReplicaCount: 5
-      cooldownPeriod: 5
-      pollingInterval: 5
-      triggers:
-        - type: schedule
-          metadata:
-            timezone: "Asia/Jerusalem"
-            startTime: "08:00"
-            endTime: "12:00"
-            interval: "1h"
-
 nodeSelector: {}
 
 tolerations: []
