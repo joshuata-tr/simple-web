@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     if (params.ACTION == 'Deploy') {
-                        sh 'helm upgrade --install simple-web ./simple-web --namespace josh -f values.yaml --kubeconfig /home/azureuser/.kube/config'
+                        sh 'helm upgrade --install simple-web simple-web --namespace josh -f values.yaml --kubeconfig /home/azureuser/.kube/config'
                     } else if (params.ACTION == 'Destroy') {
                         sh 'helm delete simple-web --namespace josh --kubeconfig /home/azureuser/.kube/config'
                     }
