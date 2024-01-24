@@ -1,20 +1,21 @@
 {{- if .Values.ingress.enabled }}
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: simple-web-ingress
+  name: {{ .Values.ingress.name }}
   namespace: {{ .Values.service.namespace }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - http:
+    - host: {{ .Values.ingress.host }}
+      http:
         paths:
           - path: {{ .Values.ingress.path }}
-            pathType: Prefix
+            pathType: {{ .Values.ingress.pathType }}
             backend:
               service:
                 name: {{ .Values.service.name }}
                 port:
-                  number: {{ .Values.service.port }}
+                  name: {{ .Values.service.port.name }}
 {{- end }}
