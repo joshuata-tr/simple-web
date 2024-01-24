@@ -18,7 +18,7 @@ service:
 ingress:
   enabled: true
   name: simple-web-ingress
-  host: example.com
+  host: 20.86.195.36
   path: /josh
   pathType: Prefix
 
