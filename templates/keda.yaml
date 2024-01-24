@@ -1,0 +1,35 @@
+{{- if .Values.keda.enabled }}
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: {{ .Values.keda.scaledObject.metadata.name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  scaleTargetRef:
+    name: {{ .Values.keda.scaledObject.scaleTargetRef.name }}
+    kind: {{ .Values.keda.scaledObject.scaleTargetRef.kind }}
+    apiVersion: apps/v1
+  minReplicaCount: {{ .Values.keda.scaledObject.minReplicaCount }}
+  maxReplicaCount: {{ .Values.keda.scaledObject.maxReplicaCount }}
+  cooldownPeriod: {{ .Values.keda.scaledObject.cooldownPeriod }}
+  pollingInterval: {{ .Values.keda.scaledObject.pollingInterval }}
+  triggers:
+{{- range .Values.keda.scalers }}
+  - type: {{ .type }}
+    metadata:
+      name: {{ .metadata.name }}
+    pollingInterval: {{ .pollingInterval }}
+    cooldownPeriod: {{ .cooldownPeriod }}
+    triggers:
+{{- range .triggers }}
+      - type: {{ .type }}
+        metadata:
+{{- range $key, $value := .metadata }}
+          {{ $key }}: {{ $value | quote }}
+{{- end }}
+        query: {{ .query | quote }}
+        threshold: {{ .threshold | quote }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
