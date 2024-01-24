@@ -21,7 +21,6 @@ service:
 ingress:
   enabled: true
   name: simple-web-ingress
-  host: external.simple-web.com
   path: /josh
   pathType: Prefix
   annotations:
