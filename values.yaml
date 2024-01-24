@@ -4,6 +4,9 @@
 
 replicaCount: 1
 
+autoscaling:
+  enabled: false
+
 image:
   repository: acrinterview.azurecr.io/simple-web
   pullPolicy: IfNotPresent
