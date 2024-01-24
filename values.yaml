@@ -41,10 +41,10 @@ keda:
             threshold: "80"
   scaledObject:
     metadata:
-      name: simple-web-deployment 
+      name: simple-web
     spec:
       scaleTargetRef:
-        name: simple-web-deployment
+        name: simple-web
         kind: Deployment
       minReplicaCount: 1
       maxReplicaCount: 5
