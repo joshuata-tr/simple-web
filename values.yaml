@@ -21,7 +21,7 @@ service:
 ingress:
   enabled: true
   name: simple-web-ingress
-  host: 20.86.195.36
+  host: devops-interview-me10b2tr.hcp.westeurope.azmk8s.io
   path: /josh
   pathType: Prefix
 
