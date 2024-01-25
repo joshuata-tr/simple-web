@@ -26,7 +26,6 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
 
-
 autoscaling:
   enabled: true
   type: keda
