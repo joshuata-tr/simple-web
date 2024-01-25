@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "simple-web.fullname" . }}
-  namespace: josh
+  namespace: {{ .Values.service.namespace }}
   labels:
     app: {{ include "simple-web.name" . }}
 spec:
@@ -14,6 +14,10 @@ spec:
     metadata:
       labels:
         app: {{ include "simple-web.name" . }}
+      annotations:
+        "keda.sh/enable": "{{ .Values.autoscaling.enabled }}"
+        "keda.sh/scaler": "{{ .Values.autoscaling.type }}"
+        "keda.sh/target": "{{ .Values.autoscaling.targetCPUUtilizationPercentage }}"
     spec:
       containers:
         - name: {{ .Chart.Name }}
